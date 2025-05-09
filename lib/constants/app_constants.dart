@@ -51,7 +51,7 @@ const String strFragenZurUntersuchung = "Fragen zur Untersuchung :";
 const String strZielDesc1 =
     "Untersuchung des Verhaltens einer in Reihe geschalteten RLC-Schaltung, insbesondere der Resonanzfrequenz und SpannungssPhasenvershiebung.";
 const String strZielDesc2 =
-    "Analyse der Spannungsregelungs-Eigenschaften einer Zenerdiode.";
+    "Untersuchung der Strom-Spannungs-Kennlinie einer Diode und LED. Ziel ist es, das Verhalten der Diode und LED zu analysieren und den Unterschied der Schwellenspannung zu beobachten.";
 const String strZielDesc3 =
     "Bestimmung eines unbekannten Widerstands mit einer Wheatstone-Brücke.";
 
@@ -65,9 +65,9 @@ const String strBenotigteMaterialien1 = "AC-Signal: +1.45V bis -1.45V\n"
     ;
 
 const String strBenotigteMaterialien2 =
-    "Spannungsquelle: 3,3V (über Messboard-Reihe 35 und NICHT von 55)\n"
+    "Spannungsquelle: DAC (über Messboard-Reihe 35 und NICHT von 55)\n"
     "Diode + LED (rote LED mit 2V, 20mA)\n"
-    "Shunt-Widerstand: 1Ω (für Strommessung)\n"
+    "Shunt-Widerstand: 1Ω  (für Strommessung)\n"
     "4 Messleitungen: CH0-CH3 (Messboard-Reihe 1, 5, 10, 15)\n";
 
 const String strBenotigteMaterialien3 = "R1 : 1 kΩ (Festwiderstand)\n"
@@ -89,17 +89,26 @@ const String strBenotigteMaterialien4 = "2 x NPN-Transistoren\n"
 
 //
 const String strAnleitung1 =
-    "Verbinde die Messboard-Reihe 50 mit deiner Schaltung  das ist die Sinusversorgung.\n\n 1.Setze den 68Ω Widerstand in Reihe mit dem Eingangssignal\n\n 2.Schließe Spule und Kondensator in Reihe zur Sinusquelle an.\n\n3.Fuge den 5Ω Shunt-Widerstand zur Strommessung in den Stromkreis ein..\n\n"
-    "4.Stecke die beiden Kabel aus der Schaltung in Messboard-Reihe 25 und um die Spannung zwischen diesen zwei Punkten zu messen \n\n  "
-    "5.Der Output der Differenzspannung liegt auf Reihe 20 (Messboard) . Verbinden Sie diesen Punkt mit CH0 (Messboard-Reihe 1), damit das Messergebnis gezeigt wird.\n\n"
-    "6.	Verwenden Sie die Infinity Circuit App zur Messung der Resonanzfrequenz und zur Analyse der Spannungsänderungen bei Resonanz";
+    "Versorge die Schaltung über Messboard-Reihe 50 (Sinusversorgung).\n"
+    "2. Setze einen  100 \u202F\u03A9 Widerstand in Reihe zum Eingangssignal.\n"
+    "3. Schließe Spule und Kondensator im Reihe zur Sinusquelle an.\n"
+    "4. Füge den 5\u202F\u03A9 Shunt-Widerstand in den Stromkreis ein.\n"
+    "5. Spannungsmessung:\n"
+    "• Verwende Reihe 25 und 27 (AC1) um die Spannung zwischen zwei Punkten zu messen.\n"
+    "• Die Differenzspannung liegt an OUT1 (Reihe 20).\n"
+    "• Verbinde OUT1 mit CH0 (Reihe 1) \u2192 Spannung erscheint in der App.\n"
+    "6. Strommessung:\n"
+    "• Verwende Reihe 30 und 32 (AC2) um den Strom zwischen zwei Punkten zu messen.\n"
+    "• Die Stromdifferenz liegt an OUT2 (Reihe 22).\n"
+    "• Verbinde OUT2 mit CH2 (Reihe 10) \u2192 Strom erscheint in der App.\n"
+    "7. Starte die App, um Spannung und Strom gleichzeitig als Kurve zu sehen und die Phasenverschiebung zu analysieren.";
 const String strAnleitung2 =
-    "1.Bauen Sie die Schaltung nach dem Schaltplan auf dem Breadboard auf.\n\n"
-    "2.Füge den Shunt-Widerstand in Reihe ein - zur Strommessung\n\n"
-    "3.	Verbinde den Shunt mit den Messpunkten, um den Strom durch die Diode zu ermitteln\n"
-        "o CH2 (Messboard-Reihe 1) = Minus-Seite \n " 
-        "o CH3 (Messboard-Reihe 5) = Plus-Seite \n\n"
-    "5.Verwenden Sie die Infinity Circuit App, um die Spannungs-Strom-Kennlinie der Diode zu analysieren und zu visualisieren";
+    "1. Bauen Sie die Schaltung nach dem Schaltplan auf dem Breadboard auf.\n\n"
+    "2. Füge den Shunt-Widerstand in Reihe ein - zur Strommessung\n\n"
+    "3. Verbinde den Shunt mit den Messpunkten, um den Strom durch die Diode zu ermitteln\n"
+    "   o CH2 (Messboard-Reihe 1) = Minus-Seite \n "
+    "   o CH3 (Messboard-Reihe 5) = Plus-Seite \n\n"
+    "4. Verwenden Sie die Infinity Circuit App, um die Spannungs-Strom-Kennlinie der Diode und LED zu analysieren und zu visualisieren.";
 
 const String strAnleitung3 =
     "1.Bauen Sie die Wheatstone-Brücke mit den vier Widerständen auf dem Breadboard auf.\n\n"
@@ -121,8 +130,8 @@ const String strSicherheitshinweise1 =
     "Wenn Sie einen ungewöhnlichen, verbrannten Geruch wahrnehmen oder , trennen Sie das USB-Kabel sofort.";
 
 const String strSicherheitshinweise2 =
-    "•	Die Versorgungsspannung in diesem Versuch wird über Messboard-Reihe 35 (3,3V) bereitgestellt.\n"
-    "•	Stellen Sie sicher, dass alle Verbindungen korrekt sind, bevor Sie die Spannung anschließen. ";
+    "• Die Versorgungsspannung in diesem Versuch wird über Messboard-Reihe 35 (DAC) bereitgestellt.\n"
+    "• Stellen Sie sicher, dass alle Verbindungen korrekt sind, bevor Sie die Spannung anschließen. ";
 
 const String strSicherheitshinweise3 =
     "•	Stellen Sie sicher, dass alle Verbindungen korrekt sind, um Kurzschlüsse zu vermeiden.";
@@ -159,9 +168,9 @@ const String solutionDesc2 =
     "Berechnung des Vorwiderstands:\n"
     "Um die LED zu schützen, muss ein Vorwiderstand berechnet werden, der den Strom begrenzt.\n\n"
     "Verhalten der Schaltung:\n"
-    "Bei Verwendung des 100Ω Widerstands wird die LED korrekt betrieben.\n"
+    "Bei Verwendung des 100\u03A9 Widerstands wird die LED korrekt betrieben.\n"
     "Die LED sollte konstant leuchten, was auf eine stabile Stromversorgung hindeutet.\n"
-    "Verwenden Sie die Infinity Circuit App, um die Spannungs-Strom-Kennlinie der Diode aufzuzeichnen.\n"
+    "Verwenden Sie die Infinity Circuit App, um die Spannungs-Strom-Kennlinie der Diode und LED aufzuzeichnen.\n"
     "In der Durchlassrichtung zeigt die Diode eine niedrige Spannung (Vorwärtsspannung), und es fließt Strom.\n"
     "In der Sperrkonfiguration fließt nahezu kein Strom, was an der Sperrwirkung der Diode liegt.";
 

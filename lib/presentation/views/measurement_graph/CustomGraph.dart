@@ -13,6 +13,7 @@ class CustomGraph extends StatefulWidget {
   final double timeInterval;
   final String selectedUnit;
   final Function(String) onUnitChanged;
+  final VoidCallback? plausibilityErrorCallback;
 
   const CustomGraph({
     super.key,
@@ -22,6 +23,7 @@ class CustomGraph extends StatefulWidget {
     required this.timeInterval,
     required this.selectedUnit,
     required this.onUnitChanged,
+    this.plausibilityErrorCallback,
   });
 
   @override
@@ -200,6 +202,12 @@ class CustomGraphState extends State<CustomGraph> {
             isVoltage: false
           );
         case 'Diode Graph':
+          // Plausibilitätsfehler-Callback für Snackbar
+          viewModel.onPlausibilityError = () {
+            if (widget.plausibilityErrorCallback != null) {
+              widget.plausibilityErrorCallback!();
+            }
+          };
           final voltageList = widget.voltageData.isNotEmpty
               ? widget.voltageData.map((spot) => spot.y).toList()
               : [0.0];

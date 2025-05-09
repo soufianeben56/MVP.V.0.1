@@ -36,16 +36,8 @@ class SecondTutorialViewModel extends LocalBaseModel {
   List<SecondtutorialModel> solutionList = [
     SecondtutorialModel(
       "RLC-Schaltung ",
-
       Assets.svg.icGroup11,
       "Lorem ipsum dolor sit amet consectetur. Sapien risus tincidunt neque aliquam eleifend proin justo. Leo eleifend viverra at volutpat",
-      () => TutorialoneView(), // Replace with your actual widget
-    ),
-    SecondtutorialModel(
-      "Zener-Dioden-Tutorial  ",
-      Assets.svg.icSecondtutorial1,
-      "Analyse der Spannungsregelungs-"
-          "Eigenschaften einer Zenerdiode.",
       () => TutorialoneView(), // Replace with your actual widget
     ),
   ];

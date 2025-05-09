@@ -42,7 +42,7 @@ class MeasurementGraphViewModel extends ChangeNotifier {
   
   // Getter for AC measurement values
   double get lastRmsU => _lastRmsU;
-  double get lastRmsI => _lastRmsI;
+  double get lastRmsI => experiment == Experiment.experiment1 ? _lastRmsI / 5.0 : _lastRmsI;
   double get lastPhase => _lastPhase;
 
   // Sampling Intervall in Millisekunden

@@ -40,7 +40,7 @@ class SolutionDetailView extends StatelessWidget {
       case SolutionType.solution1:
         return "RLC-Schaltung";
       case SolutionType.solution2:
-        return "Zener-Dioden-Experiment mit LED";
+        return "Dioden-Experiment mit LED";
       case SolutionType.solution3:
         return "Brückenschaltungs-Experiment";
       case SolutionType.solution4:

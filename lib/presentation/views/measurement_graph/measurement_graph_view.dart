@@ -22,6 +22,8 @@ class MeasurementGraphView extends StatefulWidget {
 
 class MeasurementGraphViewState extends State<MeasurementGraphView> {
   bool showOverlay = true;
+  bool _plausibilitySnackbarVisible = false;
+  DateTime? _lastPlausibilityError;
 
   @override
   void initState() {
@@ -40,6 +42,20 @@ class MeasurementGraphViewState extends State<MeasurementGraphView> {
   Future<void> _setOverlaySeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('hasSeenOverlay', true);
+  }
+
+  void _showPlausibilitySnackbar() {
+    if (_plausibilitySnackbarVisible) return;
+    _plausibilitySnackbarVisible = true;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(MeasurementGraphViewModel.plausibilityErrorText),
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(seconds: 3),
+      ),
+    ).closed.then((_) {
+      _plausibilitySnackbarVisible = false;
+    });
   }
 
   @override
@@ -113,15 +129,10 @@ class MeasurementGraphViewState extends State<MeasurementGraphView> {
             },
           );
         };
-        // Plausibilitäts-SnackBar für Diode-Experiment
         if (viewModel.experiment == Experiment.experiment2) {
           viewModel.onPlausibilityError = () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(MeasurementGraphViewModel.plausibilityErrorText),
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
+            // Die Snackbar wird jetzt nur noch im Dioden-Graph über einen Callback getriggert
+            // und nicht mehr direkt hier.
           };
         }
       },
@@ -190,7 +201,20 @@ class MeasurementGraphViewState extends State<MeasurementGraphView> {
                           physics: NeverScrollableScrollPhysics(),
                           children: [
                             tab1(viewModel, widget.arguments, context),
-                            tab2(viewModel, widget.arguments, context),
+                            CustomGraph(
+                              voltageData: viewModel.voltageData,
+                              currentData: viewModel.currentData,
+                              hasDiodeGraph: widget.arguments.experiment == Experiment.experiment2,
+                              timeInterval: viewModel.sliderValue,
+                              selectedUnit: viewModel.selectedUnit,
+                              onUnitChanged: viewModel.updateSelectedUnit,
+                              plausibilityErrorCallback: () {
+                                // Zeige Snackbar nur, wenn Dioden-Graph aktiv ist
+                                if (viewModel.selectedGraphType == 'Diode Graph') {
+                                  _showPlausibilitySnackbar();
+                                }
+                              },
+                            ),
                           ],
                         ),
                       ),

@@ -23,7 +23,7 @@ class SolutionViewModel extends LocalBaseModel {
   List<SolutionModel> solutionList = [
     SolutionModel(
         "RLC-Schaltung", Assets.icons.icSolution1, SolutionType.solution1),
-    SolutionModel("Zener-Dioden-Experiment mit LED ", Assets.icons.icSolution2,
+    SolutionModel("Dioden-Experiment mit LED", Assets.icons.icSolution2,
         SolutionType.solution2),
     SolutionModel("Brückenschaltungs- Experiment ", Assets.icons.icSolution3,
         SolutionType.solution3),

@@ -243,18 +243,6 @@ class ExperimentsDetailView2 extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             TermLinkWidget(
-              term: "Zener-Diode",
-              sectionId: HowToUseSections.otherComponents,
-              style: textStyle,
-            ),
-            Text(": 3,3V, 0,5W", style: textStyle),
-          ],
-        ),
-        SizedBox(height: 4),
-        Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            TermLinkWidget(
               term: "Shunt-Widerstand",
               sectionId: HowToUseSections.shuntResistor,
               style: textStyle,
