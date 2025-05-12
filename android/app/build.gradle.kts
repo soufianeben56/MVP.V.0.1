@@ -1,3 +1,16 @@
+import java.util.Properties
+import java.io.FileInputStream
+import java.io.File
+
+// Define hardcoded keystore values as fallback
+val storePassword = "Infinitysolutions4500B"
+val keyPassword = "Infinitysolutions4500B"
+val keyAlias = "infinityrelease"
+val storeFilePath = "../new-release-key.jks"
+
+println("🔍 Using hardcoded keystore values")
+println("🔐 Keystore path: $storeFilePath")
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -30,11 +43,18 @@ android {
         versionName = flutter.versionName
     }
 
+    // Note: Signing is skipped for now due to issues with the keystore
+    // You can sign the app bundle manually later using:
+    // jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore new-release-key.jks -storepass Infinitysolutions4500B -keypass Infinitysolutions4500B app-release.aab infinityrelease
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            isMinifyEnabled = false
+            isShrinkResources = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 }
