@@ -9,6 +9,8 @@ import 'package:infinity_circuit/service/routing/route_paths.dart';
 import '../../../local/pref_keys.dart';
 import '../../../local/user_preference.dart';
 import '../measurement_graph/CustomGraphViewModel.dart';
+import '../connect_blue/blue_manager.dart';
+import '../../../ui/app_colors.dart';
 
 class HomeExperimentsViewModel extends LocalBaseModel {
   String? registeredName;
@@ -111,19 +113,83 @@ class HomeExperimentsViewModel extends LocalBaseModel {
 
   // Method for handling navigation when experiments are tapped
   void onTapExperiments1(MeasurementGraphArguments arguments) {
+    // Überprüfen, ob ein Gerät verbunden ist
+    if (!BLEManager().isDeviceConnected()) {
+      // Wir übergeben den BuildContext später in der View
+      return;
+    }
     navigateTo(RoutePaths.experimentsDetailView1Route, arguments: arguments);
   }
 
   void onTapExperiments2(MeasurementGraphArguments arguments) {
+    // Überprüfen, ob ein Gerät verbunden ist
+    if (!BLEManager().isDeviceConnected()) {
+      // Wir übergeben den BuildContext später in der View
+      return;
+    }
     navigateTo(RoutePaths.experimentsDetailView2Route, arguments: arguments);
   }
 
   void onTapExperiments3(MeasurementGraphArguments arguments) {
+    // Überprüfen, ob ein Gerät verbunden ist
+    if (!BLEManager().isDeviceConnected()) {
+      // Wir übergeben den BuildContext später in der View
+      return;
+    }
     navigateTo(RoutePaths.experimentsDetailView3Route, arguments: arguments);
   }
 
   void onTapExperiments4(MeasurementGraphArguments arguments) {
+    // Überprüfen, ob ein Gerät verbunden ist
+    if (!BLEManager().isDeviceConnected()) {
+      // Wir übergeben den BuildContext später in der View
+      return;
+    }
     navigateTo(RoutePaths.experimentsDetailView4Route, arguments: arguments);
+  }
+
+  // Dialog anzeigen und zur BLE-Scan-Seite weiterleiten
+  void showDeviceConnectionDialog(BuildContext context, {MeasurementGraphArguments? arguments, String? routePath}) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text("Erstmal das Gerät verbinden"),
+          content: Text("Bitte verbinde zuerst ein Gerät, bevor du das Experiment startest."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                // Dialog schließen und zur Experiment-Seite navigieren
+                Navigator.of(dialogContext).pop();
+                // Wenn Route und Argumente übergeben wurden, navigiere zum Experiment
+                if (routePath != null && arguments != null) {
+                  navigateTo(routePath, arguments: arguments);
+                }
+              },
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.black, // Schwarze Farbe für 'Abbrechen'
+              ),
+              child: Text("Abbrechen"),
+            ),
+            TextButton(
+              onPressed: () {
+                // Dialog schließen und zur BLE-Scan-Seite navigieren
+                Navigator.of(dialogContext).pop();
+                navigateTo(RoutePaths.newScanDeviceViewRoute);
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: AppColors.primaryColor, // Dunkelblau für Verbinden-Button
+                foregroundColor: Colors.white,
+              ),
+              child: Text(
+                "Zum Verbinden",
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   // Method to filter experiments based on search input

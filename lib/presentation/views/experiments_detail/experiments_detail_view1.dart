@@ -102,8 +102,8 @@ class ExperimentsDetailView1 extends StatelessWidget {
             padding: EdgeInsets.symmetric(
                 horizontal: SizeConfig.relativeWidth(4.80),
                 vertical: SizeConfig.relativeHeight(0.68)),
-            decoration: BoxDecoration(color: AppColors.primaryColor),
-            child: CommonTextWidget(
+            decoration: const BoxDecoration(color: AppColors.primaryColor),
+            child: const CommonTextWidget(
               text: stringExpTitle1,
               color: AppColors.white,
               fontWeight: FontWeight.w600,
@@ -213,7 +213,7 @@ class ExperimentsDetailView1 extends StatelessWidget {
               sectionId: HowToUseSections.otherComponents,
               style: textStyle,
             ),
-            Text(": 68 Ω", style: textStyle),
+            Text(": 100 Ω", style: textStyle),
           ],
         ),
         Wrap(
@@ -270,24 +270,24 @@ class ExperimentsDetailView1 extends StatelessWidget {
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            Text("Verbinde die ", style: textStyle),
+            Text("1. Verbinde die ", style: textStyle),
             TermLinkWidget(
               term: "Messboard-Reihe 50",
               sectionId: HowToUseSections.messboard,
               style: textStyle,
             ),
-            Text(" mit deiner Schaltung - das ist die Sinusversorgung.", style: textStyle),
+            Text("mit deiner Schaltung - das ist die Sinusversorgung.", style: textStyle),
           ],
         ),
         SizedBox(height: 8),
-        Text("1. Setze den 100Ω Widerstand in Reihe mit dem Eingangssignal", style: textStyle),
+        Text("2. Setze den 100Ω Widerstand in Reihe mit dem Eingangssignal", style: textStyle),
         SizedBox(height: 8),
-        Text("2. Schließe Spule und Kondensator in Reihe zur Sinusquelle an.", style: textStyle),
+        Text("3. Schließe Spule und Kondensator in Reihe zur Sinusquelle an.", style: textStyle),
         SizedBox(height: 8),
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            Text("3. Füge den 5Ω ", style: textStyle),
+            Text("4. Füge den 5Ω ", style: textStyle),
             TermLinkWidget(
               term: "Shunt-Widerstand",
               sectionId: HowToUseSections.shuntResistor,
@@ -297,40 +297,108 @@ class ExperimentsDetailView1 extends StatelessWidget {
           ],
         ),
         SizedBox(height: 8),
-        Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("4. Stecke die beiden Kabel aus der Schaltung in ", style: textStyle),
-            TermLinkWidget(
-              term: "Messboard-Reihe 25 und 30",
-              sectionId: HowToUseSections.messboard,
-              style: textStyle,
+            Text("5. Spannungsmessung:", style: textStyle),
+            Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Text("• Verwende ", style: textStyle),
+                TermLinkWidget(
+                  term: "Reihe 25 und 27 (AC1)",
+                  sectionId: HowToUseSections.messboard,
+                  style: textStyle,
+                ),
+                Text(" um die Spannung zwischen zwei Punkten zu messen.", style: textStyle),
+              ],
             ),
-            Text(", um die Spannung zwischen diesen zwei Punkten zu messen.", style: textStyle),
+            Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Text("• Die Differenzspannung liegt an ", style: textStyle),
+                TermLinkWidget(
+                  term: "OUT1 (Reihe 20)",
+                  sectionId: HowToUseSections.messboard,
+                  style: textStyle,
+                ),
+                Text(".", style: textStyle),
+              ],
+            ),
+            Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Text("• Verbinde ", style: textStyle),
+                TermLinkWidget(
+                  term: "OUT1 (Reihe 20)",
+                  sectionId: HowToUseSections.messboard,
+                  style: textStyle,
+                ),
+                Text(" mit ", style: textStyle),
+                TermLinkWidget(
+                  term: "CH0 (Reihe 1)",
+                  sectionId: HowToUseSections.messboard,
+                  style: textStyle,
+                ),
+                Text(" → Spannung erscheint in der App.", style: textStyle),
+              ],
+            ),
           ],
         ),
         SizedBox(height: 8),
-        Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
+        // New Strommessung step with TermLinkWidget for the required terms
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("5. Der Output der Differenzspannung liegt auf ", style: textStyle),
-            TermLinkWidget(
-              term: "Reihe 20 (Messboard)",
-              sectionId: HowToUseSections.messboard,
-              style: textStyle,
+            Text("6. Strommessung:", style: textStyle),
+            Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Text("• Verwende ", style: textStyle),
+                TermLinkWidget(
+                  term: "Reihe 30 und 32 (AC2)",
+                  sectionId: HowToUseSections.messboard,
+                  style: textStyle,
+                ),
+                Text(" um den Strom zwischen zwei Punkten zu messen.", style: textStyle),
+              ],
             ),
-            Text(". Verbinden Sie diesen Punkt mit ", style: textStyle),
-            TermLinkWidget(
-              term: "CH0 (Messboard-Reihe 1)",
-              sectionId: HowToUseSections.messboard,
-              style: textStyle,
+            Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Text("• Die Stromdifferenz liegt an ", style: textStyle),
+                TermLinkWidget(
+                  term: "OUT2 (Reihe 22)",
+                  sectionId: HowToUseSections.messboard,
+                  style: textStyle,
+                ),
+                Text(".", style: textStyle),
+              ],
             ),
-            Text(", damit das Messergebnis gezeigt wird.", style: textStyle),
+            Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Text("• Verbinde ", style: textStyle),
+                TermLinkWidget(
+                  term: "OUT2 (Reihe 22)",
+                  sectionId: HowToUseSections.messboard,
+                  style: textStyle,
+                ),
+                Text(" mit ", style: textStyle),
+                TermLinkWidget(
+                  term: "CH2 (Reihe 10)",
+                  sectionId: HowToUseSections.messboard,
+                  style: textStyle,
+                ),
+                Text(" → Strom erscheint in der App.", style: textStyle),
+              ],
+            ),
+            
+            
+          
           ],
         ),
-        SizedBox(height: 8),
-        Text("7. Starte die App, um Spannung und Strom gleichzeitig als Kurve zu sehen und die Phasenverschiebung zu analysieren", style: textStyle),
-        SizedBox(height: 16),
+            SizedBox(height: 8),
         Container(
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(

@@ -60,14 +60,14 @@ class _RMaxInputDialogState extends State<RMaxInputDialog> {
             borderRadius: BorderRadius.circular(15),
           ),
           title: Text(
-            "Verbindung erforderlich",
+            "Bitte das Gerät verbinden",
             style: TextStyle(
               color: AppColors.color212121,
               fontWeight: FontWeight.bold,
             ),
           ),
           content: Text(
-            "Du bist mit keinem Gerät verbunden.",
+            "Um eine Messung zu starten, verbinde bitte zuerst ein Gerät über das Bluetooth-Symbol in der App-Leiste.",
             style: TextStyle(
               color: AppColors.textColor,
             ),
@@ -78,30 +78,13 @@ class _RMaxInputDialogState extends State<RMaxInputDialog> {
                 Navigator.of(context).pop();
               },
               style: TextButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: Text(
-                "Abbrechen",
-                style: TextStyle(
-                  color: AppColors.primaryColor,
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pushNamed(RoutePaths.newScanDeviceViewRoute);
-              },
-              style: TextButton.styleFrom(
                 backgroundColor: AppColors.primaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6),
                 ),
               ),
               child: Text(
-                "Verbinden",
+                "OK",
                 style: TextStyle(
                   color: AppColors.white,
                 ),

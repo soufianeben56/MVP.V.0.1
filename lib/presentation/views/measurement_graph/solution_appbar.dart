@@ -8,6 +8,7 @@ class SolutionAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
   final PreferredSizeWidget? bottomWidget;
   final SvgGenImage? actionIcon;
+  final Function()? onTapBleAction;
 
   const SolutionAppBar({
     super.key,
@@ -17,6 +18,7 @@ class SolutionAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor = AppColors.primaryBackGroundColor,
     this.bottomWidget,
     this.actionIcon,
+    this.onTapBleAction,
   });
 
   @override
@@ -34,6 +36,12 @@ class SolutionAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: _buildTitle(),
       centerTitle: true,
       actions: [
+        if (onTapBleAction != null)
+          _buildCircularIcon(
+            icon: Assets.svg.icImage111,
+            onTap: onTapBleAction,
+            iconColor: AppColors.primaryColor,
+          ),
         _buildCircularIcon(
           icon: actionIcon ?? Assets.svg.icSol,
           onTap: onTapAction ?? () {},
@@ -65,7 +73,11 @@ class SolutionAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget _buildCircularIcon({required SvgGenImage icon, required Function()? onTap}) {
+  Widget _buildCircularIcon({
+    required SvgGenImage icon, 
+    required Function()? onTap, 
+    Color iconColor = AppColors.color212121,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -75,14 +87,14 @@ class SolutionAppBar extends StatelessWidget implements PreferredSizeWidget {
           bottom: SizeConfig.relativeHeight(0.62),
         ),
         padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.white,
         ),
         child: icon.svg(
           width: SizeConfig.relativeWidth(6.0),
           height: SizeConfig.relativeHeight(3.5),
-          color: AppColors.color212121, // Icon color
+          color: iconColor,
         ),
       ),
     );

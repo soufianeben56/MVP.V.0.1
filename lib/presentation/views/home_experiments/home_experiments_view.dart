@@ -3,6 +3,11 @@ import 'package:infinity_circuit/generated/assets.gen.dart';
 import 'package:infinity_circuit/generated/fonts.gen.dart';
 import 'package:infinity_circuit/generated/l10n.dart';
 import 'package:infinity_circuit/presentation/views/logout/logout_view.dart';
+import '../connect_blue/blue_manager.dart';
+import 'package:infinity_circuit/service/routing/arguments/measurement_graph_arguments.dart';
+import '../measurement_graph/CustomGraphViewModel.dart';
+import '../../../constants/app_constants.dart';
+import 'package:infinity_circuit/service/routing/route_paths.dart';
 
 import 'home_experiments_viewmodel.dart';
 
@@ -84,7 +89,7 @@ class HomeExperimentsView extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).pushNamed(RoutePaths.newScanDeviceViewRoute);
                       },
-                      child: Assets.svg.icDisconnect.svg(
+                      child: Assets.svg.icImage111.svg(
                         width: SizeConfig.relativeWidth(10.40),
                         height: SizeConfig.relativeHeight(4.68),
                       ),
@@ -163,12 +168,46 @@ class HomeExperimentsView extends StatelessWidget {
                               imgHeight: experiment["imgHeight"],
                               imgWidth: experiment["imgWidth"],
                               isDescription: experiment["description"] != null,
-                              onTap: () => experiment["onTap"](
-                                  model
-                              ),
+                              onTap: () {
+                                // Überprüfe, ob ein Gerät verbunden ist
+                                if (!BLEManager().isDeviceConnected()) {
+                                  // Extrahiere die Argumente für dieses Experiment
+                                  String targetRoute = '';
+                                  MeasurementGraphArguments args;
+                                  
+                                  // Verwende das Experiment-Map, um Informationen zu extrahieren
+                                  args = MeasurementGraphArguments(
+                                    assetGenImage: experiment["assetGenImage"],
+                                    imgHeight: experiment["imgHeight"],
+                                    imgWidth: experiment["imgWidth"],
+                                    experiment: _getExperimentType(experiment["title"]),
+                                  );
+                                  
+                                  // Bestimme die Zielroute basierend auf dem Titel
+                                  if (experiment["title"] == stringExpTitle1) {
+                                    targetRoute = RoutePaths.experimentsDetailView1Route;
+                                  } else if (experiment["title"] == stringExpTitle2) {
+                                    targetRoute = RoutePaths.experimentsDetailView2Route;
+                                  } else if (experiment["title"] == stringExpTitle3) {
+                                    targetRoute = RoutePaths.experimentsDetailView3Route;
+                                  } else if (experiment["title"] == stringExpTitle4) {
+                                    targetRoute = RoutePaths.experimentsDetailView4Route;
+                                  }
+                                  
+                                  // Zeige den Verbindungsdialog, wenn kein Gerät verbunden ist
+                                  model.showDeviceConnectionDialog(
+                                    context,
+                                    arguments: args,
+                                    routePath: targetRoute,
+                                  );
+                                  return;
+                                }
+                                // Führe die normale Experiment-Navigation aus
+                                experiment["onTap"](model);
+                              },
                             ),
-                  ),
-                  ),
+                          ),
+                          ),
                 ],
               ),
             ),
@@ -232,5 +271,14 @@ class HomeExperimentsView extends StatelessWidget {
             padding:
                 EdgeInsets.symmetric(horizontal: SizeConfig.relativeWidth(5)))
         .addGestureTap(onTap: onTap!);
+  }
+
+  // Hilfsmethode, um den Experiment-Typ aus dem Titel zu bestimmen
+  Experiment _getExperimentType(String title) {
+    if (title == stringExpTitle1) return Experiment.experiment1;
+    if (title == stringExpTitle2) return Experiment.experiment2;
+    if (title == stringExpTitle3) return Experiment.experiment3;
+    if (title == stringExpTitle4) return Experiment.experiment4;
+    return Experiment.experiment1; // Standardwert
   }
 }

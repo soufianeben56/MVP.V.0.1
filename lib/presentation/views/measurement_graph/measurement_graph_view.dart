@@ -28,12 +28,19 @@ class MeasurementGraphViewState extends State<MeasurementGraphView> {
   @override
   void initState() {
     super.initState();
+    
+    // Überprüfung mit neuem Schlüssel
     _checkOverlaySeen();
+    
+    // Für den Fall, dass _checkOverlaySeen false zurückgibt, setzen wir zunächst showOverlay auf true
+    setState(() {
+      showOverlay = true;
+    });
   }
 
   Future<void> _checkOverlaySeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool hasSeenOverlay = prefs.getBool('hasSeenOverlay') ?? false;
+    bool hasSeenOverlay = prefs.getBool('hasSeenNewOverlay') ?? false;
     setState(() {
       showOverlay = !hasSeenOverlay;
     });
@@ -41,7 +48,7 @@ class MeasurementGraphViewState extends State<MeasurementGraphView> {
 
   Future<void> _setOverlaySeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('hasSeenOverlay', true);
+    await prefs.setBool('hasSeenNewOverlay', true);
   }
 
   void _showPlausibilitySnackbar() {
@@ -77,14 +84,14 @@ class MeasurementGraphViewState extends State<MeasurementGraphView> {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 title: Text(
-                  "Verbindung erforderlich",
+                  "Bitte das Gerät verbinden",
                   style: TextStyle(
                     color: AppColors.color212121,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 content: Text(
-                  "Du bist mit keinem Gerät verbunden.",
+                  "Um eine Messung zu starten, verbinde bitte zuerst ein Gerät über das Bluetooth-Symbol in der App-Leiste.",
                   style: TextStyle(
                     color: AppColors.textColor,
                   ),
@@ -95,30 +102,13 @@ class MeasurementGraphViewState extends State<MeasurementGraphView> {
                       Navigator.of(context).pop();
                     },
                     style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Text(
-                      "Abbrechen",
-                      style: TextStyle(
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      Navigator.of(context).pushNamed(RoutePaths.newScanDeviceViewRoute);
-                    },
-                    style: TextButton.styleFrom(
                       backgroundColor: AppColors.primaryColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6),
                       ),
                     ),
                     child: Text(
-                      "Verbinden",
+                      "OK",
                       style: TextStyle(
                         color: AppColors.white,
                       ),
@@ -157,6 +147,9 @@ class MeasurementGraphViewState extends State<MeasurementGraphView> {
                     ),
                   );
                 }
+              },
+              onTapBleAction: () {
+                Navigator.of(context).pushNamed(RoutePaths.newScanDeviceViewRoute);
               },
             ),
             body: Stack(
@@ -201,20 +194,7 @@ class MeasurementGraphViewState extends State<MeasurementGraphView> {
                           physics: NeverScrollableScrollPhysics(),
                           children: [
                             tab1(viewModel, widget.arguments, context),
-                            CustomGraph(
-                              voltageData: viewModel.voltageData,
-                              currentData: viewModel.currentData,
-                              hasDiodeGraph: widget.arguments.experiment == Experiment.experiment2,
-                              timeInterval: viewModel.sliderValue,
-                              selectedUnit: viewModel.selectedUnit,
-                              onUnitChanged: viewModel.updateSelectedUnit,
-                              plausibilityErrorCallback: () {
-                                // Zeige Snackbar nur, wenn Dioden-Graph aktiv ist
-                                if (viewModel.selectedGraphType == 'Diode Graph') {
-                                  _showPlausibilitySnackbar();
-                                }
-                              },
-                            ),
+                            tab2(viewModel, widget.arguments, context),
                           ],
                         ),
                       ),
@@ -240,18 +220,33 @@ class MeasurementGraphViewState extends State<MeasurementGraphView> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
+                                  // Schritt 1: Hinweis auf die Lösung
                                   Padding(
                                     padding: const EdgeInsets.only(right: 30.0),
-                                    child: Transform.rotate(
-                                      angle: -3.14159 / 2,
-                                      child: Assets.icons.icInfoLine.image(
-                                        height: 60,
-                                        width: 60,
-                                        color: Colors.white,
-                                      ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          "1",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(width: 8),
+                                        Transform.rotate(
+                                          angle: -3.14159 / 2,
+                                          child: Assets.icons.icInfoLine.image(
+                                            height: 60,
+                                            width: 60,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  SizedBox(height: 15),
+                                  SizedBox(height: 5),
                                   Text(
                                     "Hier finden Sie die Lösung!",
                                     style: TextStyle(
@@ -259,6 +254,39 @@ class MeasurementGraphViewState extends State<MeasurementGraphView> {
                                     textAlign: TextAlign.center,
                                   ),
                                   SizedBox(height: 20),
+
+                                  // Schritt 2: Hinweis auf die BLE-Verbindung
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 30.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          "2",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        SizedBox(width: 8),
+                                        Assets.svg.icImage111.svg(
+                                          height: 60,
+                                          width: 60,
+                                          color: Colors.white,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    "Hier können Sie ein Gerät verbinden!",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 14),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  SizedBox(height: 20),
+
                                   TextButton(
                                     onPressed: () {
                                       setState(() {

@@ -276,7 +276,6 @@ class SolutionDetailView extends StatelessWidget {
         descriptionText('Wählen Sie den nächsthöheren Standardwert = 100Ω, um die LED zu schützen.\n'),
         header1Text("Verhalten der Schaltung:\n"),
         descriptionText('Bei Verwendung des 100Ω Widerstands wird die LED korrekt betrieben.\n'),
-        descriptionText('Die LED sollte konstant leuchten, was auf eine stabile Stromversorgung hindeutet.\n'),
         descriptionText('Verwenden Sie die Infinity Circuit App, um die Spannungs-Strom-Kennlinie der Diode aufzuzeichnen.\n'),
         descriptionText('In der Durchlassrichtung zeigt die Diode eine niedrige Spannung (Vorwärtsspannung), und es fließt Strom.\n'),
         descriptionText('In der Sperrkonfiguration fließt nahezu kein Strom, was an der Sperrwirkung der Diode liegt.\n'),

@@ -311,7 +311,7 @@ class ExperimentsDetailView4 extends StatelessWidget {
               sectionId: HowToUseSections.otherComponents,
               style: textStyle,
             ),
-            Text(" abwechselnd blinken. Die Blinkgeschwindigkeit wird durch die Werte von R, C, und T bestimmt.", style: textStyle),
+            Text("abwechselnd blinken. Die Blinkgeschwindigkeit wird durch die Werte von R, C, und T bestimmt.", style: textStyle),
           ],
         ),
         SizedBox(height: 8),

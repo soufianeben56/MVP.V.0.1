@@ -34,8 +34,8 @@ class HomeViewModel extends LocalBaseModel {
     navigateTo(RoutePaths.logoutView);
   }
 
-  void onTapNotConnect() {
-    navigateTo(RoutePaths.scanDeviceViewRoute);
+  void onTapConnect() {
+    navigateTo(RoutePaths.newScanDeviceViewRoute);
   }
 
   void onTapHowToUse() {

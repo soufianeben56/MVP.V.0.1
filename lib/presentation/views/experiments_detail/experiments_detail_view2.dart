@@ -102,8 +102,8 @@ class ExperimentsDetailView2 extends StatelessWidget {
             padding: EdgeInsets.symmetric(
                 horizontal: SizeConfig.relativeWidth(4.80),
                 vertical: SizeConfig.relativeHeight(0.68)),
-            decoration: BoxDecoration(color: AppColors.primaryColor),
-            child: CommonTextWidget(
+            decoration: const BoxDecoration(color: AppColors.primaryColor),
+            child: const CommonTextWidget(
               text: stringExpTitle2,
               color: AppColors.white,
               fontWeight: FontWeight.w600,
@@ -211,7 +211,7 @@ class ExperimentsDetailView2 extends StatelessWidget {
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            Text("Spannungsquelle: 3,3V (über ", style: textStyle),
+            Text("Spannungsquelle: DAC (über ", style: textStyle),
             TermLinkWidget(
               term: "Messboard-Reihe 35",
               sectionId: HowToUseSections.messboard,
@@ -320,6 +320,34 @@ class ExperimentsDetailView2 extends StatelessWidget {
               style: textStyle,
             ),
             Text(" = Plus-Seite", style: textStyle),
+          ],
+        ),
+        SizedBox(height: 8),
+        Text("4. Miss die Sapnnung über der Diode ", style: textStyle),
+        SizedBox(height: 4),
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            Text("o ", style: textStyle),
+            TermLinkWidget(
+              term: "CH0 (Messboard-Reihe 1)",
+              sectionId: HowToUseSections.messboard,
+              style: textStyle,
+            ),
+            Text("= Anode", style: textStyle),
+          ],
+        ),
+        SizedBox(height: 4),
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            Text("o ", style: textStyle),
+            TermLinkWidget(
+              term: "CH1 (Messboard-Reihe 5)",
+              sectionId: HowToUseSections.messboard,
+              style: textStyle,
+            ),
+            Text("= Kathode", style: textStyle),
           ],
         ),
         SizedBox(height: 8),
