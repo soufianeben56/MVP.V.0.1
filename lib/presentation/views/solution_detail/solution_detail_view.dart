@@ -256,7 +256,7 @@ class SolutionDetailView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        headerText("Dioden mit LED - Lösung\n"),
+       
         header1Text("Berechnung des Vorwiderstands:"),
         SizedBox(height: SizeConfig.relativeHeight(1.23)),
         descriptionText("Um die LED zu schützen, muss ein Vorwiderstand berechnet werden, der den Strom begrenzt.\n"),
@@ -273,12 +273,17 @@ class SolutionDetailView extends StatelessWidget {
             width: SizeConfig.relativeWidth(50)),
         SizedBox(height: SizeConfig.relativeHeight(1.99)),
 
-        descriptionText('Wählen Sie den nächsthöheren Standardwert = 100Ω, um die LED zu schützen.\n'),
-        header1Text("Verhalten der Schaltung:\n"),
-        descriptionText('Bei Verwendung des 100Ω Widerstands wird die LED korrekt betrieben.\n'),
-        descriptionText('Verwenden Sie die Infinity Circuit App, um die Spannungs-Strom-Kennlinie der Diode aufzuzeichnen.\n'),
-        descriptionText('In der Durchlassrichtung zeigt die Diode eine niedrige Spannung (Vorwärtsspannung), und es fließt Strom.\n'),
-        descriptionText('In der Sperrkonfiguration fließt nahezu kein Strom, was an der Sperrwirkung der Diode liegt.\n'),
+        dividerWithSpace(),
+        header1Text("Auswirkungen eines zu kleinen Vorwiderstands:\n"),
+        descriptionText('Wenn der Vorwiderstand kleiner als der berechnete Wert gewählt wird, fließt ein zu hoher Strom durch die Diode und LED.\n'),
+        descriptionText('Dies führt zu einer Überhitzung der LED, was ihre Lebensdauer stark verkürzt oder sie sofort zerstören kann.\n'),
+        descriptionText('Bei einer normalen Diode kann ein zu hoher Strom ebenfalls zur Beschädigung führen.\n'),
+        
+        dividerWithSpace(),
+        header1Text("Vergleich der Kennlinien:\n"),
+        descriptionText('Die normale Diode hat eine niedrigere Vorwärtsspannung, während die LED eine deutlich höhere Vorwärtsspannung (bei roten LEDs typischerweise ca. 2V) aufweist.\n'),
+        descriptionText('Dieser Unterschied entsteht durch die größere Bandlücke im Halbleitermaterial der LED, die für die Lichtemission notwendig ist.\n'),
+        
       ],
     );
   }

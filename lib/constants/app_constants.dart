@@ -49,15 +49,18 @@ const String strFragenZurUntersuchung = "Fragen zur Untersuchung :";
 
 //
 const String strZielDesc1 =
-    "Untersuchung des Verhaltens einer in Reihe geschalteten RLC-Schaltung, insbesondere der Resonanzfrequenz und SpannungssPhasenvershiebung.";
+    "Untersuchung des Verhaltens einer in Reihe geschalteten RLC-Schaltung, insbesondere der Resonanzfrequenz und Phasenverschiebung.";
 const String strZielDesc2 =
     "Untersuchung der Strom-Spannungs-Kennlinie einer Diode und LED. Ziel ist es, das Verhalten der Diode und LED zu analysieren und den Unterschied der Schwellenspannung zu beobachten.";
 const String strZielDesc3 =
     "Bestimmung eines unbekannten Widerstands mit einer Wheatstone-Brücke.";
 
+const String strZielDesc4 =
+    "Untersuchung eines astabilen Multivibrators mit zwei Transistoren und LEDs.";
+
 //
-const String strBenotigteMaterialien1 = "AC-Signal: +1.45V bis -1.45V\n"
-    "Widerstand: 68 Ω\n"
+const String strBenotigteMaterialien1 = "AC-Signal: + 7 V bis 7 V\n"
+    "Widerstand: 100 Ω\n"
     "Spule (L): 4.7 mH\n"
     "Kondensator (C): 220 µF\n"
     "Shunt-Widerstand: 5 Ω  (zur Strommessung ).\n"
@@ -67,6 +70,7 @@ const String strBenotigteMaterialien1 = "AC-Signal: +1.45V bis -1.45V\n"
 const String strBenotigteMaterialien2 =
     "Spannungsquelle: DAC (über Messboard-Reihe 35 und NICHT von 55)\n"
     "Diode + LED (rote LED mit 2V, 20mA)\n"
+    "R1: Vorwiderstand (zu berechnen)\n"
     "Shunt-Widerstand: 1Ω  (für Strommessung)\n"
     "4 Messleitungen: CH0-CH3 (Messboard-Reihe 1, 5, 10, 15)\n";
 
@@ -126,8 +130,8 @@ const String strAnleitung4 = " 1. Haltung 	betreiben :"
 //
 const String strSicherheitshinweise1 =
     "Stellen Sie sicher, dass alle Verbindungen sicher sind, bevor Sie die Schaltung mit Strom versorgen.\n\n"
-    "Beachten Sie, dass das AC-Signal über Messboard-Reihe 50 eingespeist wird \n\n"
-    "Wenn Sie einen ungewöhnlichen, verbrannten Geruch wahrnehmen oder , trennen Sie das USB-Kabel sofort.";
+    "Beachten Sie, dass das AC-Signal über Messboard-Reihe 50 eingespeist wird .\n\n"
+    "Wenn Sie einen ungewöhnlichen, verbrannten Geruch wahrnehmen  , trennen Sie das USB-Kabel sofort.";
 
 const String strSicherheitshinweise2 =
     "• Die Versorgungsspannung in diesem Versuch wird über Messboard-Reihe 35 (DAC) bereitgestellt.\n"
@@ -139,7 +143,7 @@ const String strSicherheitshinweise3 =
 //
 
 const String strFragenZurUntersuchung1 =
-    "Berechnen Sie die Resonanzfrequenz der in Reihe geschalteten RLC-Schaltung sowohl rechnerisch als auch experimentell. Wie verhält sich die gemessene Resonanzfrequenz im Vergleich zur berechneten?\n\n"
+    "Berechnen Sie die Resonanzfrequenz der in Reihe geschalteten RLC-Schaltung sowohl rechnerisch als auch experimental. Wie verhält sich die gemessene Resonanzfrequenz im Vergleich zur berechneten?\n\n"
     "Wie groß ist die Phasenverschiebung zwischen Spannung und Strom im reinen Widerstand?\n\n"
     "Was passiert mit der Phasenlage, wenn eine Kondensator anstelle des Widerstands verwendet wird?";
 const String strFragenZurUntersuchung2 =
@@ -147,9 +151,7 @@ const String strFragenZurUntersuchung2 =
     "Diskutieren Sie, was passiert, wenn der Vorwiderstand kleiner als der richtige Wert gewählt wird und welche Auswirkungen dies auf die Diode und LED haben könnte.\n\n"
     "Vergleiche die Kennlinie der normalen Diode mit der LED-Kennlinie. Welchen charakteristischen Unterschied erkennst du, und welche physikalische Eigenschaft der LED wird dadurch sichtbar?\n";
 const String strFragenZurUntersuchung3 =
-    "Bestimmen Sie den unbekannten Widerstand!\n\n"
-    
-    "Welche Faktoren können die Genauigkeit der Widerstandsmessung beeinflussen?";
+    "Bestimmen Sie den unbekannten Widerstand!\n";
 const String strFragenZurUntersuchung4 =
     "Wie kann die Leuchtdauer der beiden LEDs gleich sein?\n\n"
     "Welche Faktoren beeinflussen die Leuchtdauer der LEDs?\n\n"
@@ -172,7 +174,15 @@ const String solutionDesc2 =
     "Die LED sollte konstant leuchten, was auf eine stabile Stromversorgung hindeutet.\n"
     "Verwenden Sie die Infinity Circuit App, um die Spannungs-Strom-Kennlinie der Diode und LED aufzuzeichnen.\n"
     "In der Durchlassrichtung zeigt die Diode eine niedrige Spannung (Vorwärtsspannung), und es fließt Strom.\n"
-    "In der Sperrkonfiguration fließt nahezu kein Strom, was an der Sperrwirkung der Diode liegt.";
+    "In der Sperrkonfiguration fließt nahezu kein Strom, was an der Sperrwirkung der Diode liegt.\n\n"
+    "Auswirkungen eines zu kleinen Vorwiderstands:\n"
+    "Wenn der Vorwiderstand kleiner als der berechnete Wert gewählt wird, fließt ein zu hoher Strom durch die Diode und LED.\n"
+    "Dies führt zu einer Überhitzung der LED, was ihre Lebensdauer stark verkürzt oder sie sofort zerstören kann.\n"
+    "Bei einer normalen Diode kann ein zu hoher Strom ebenfalls zur Beschädigung führen, besonders wenn die maximale Verlustleistung überschritten wird.\n\n"
+    "Vergleich der Kennlinien:\n"
+    "Die normale Diode hat eine niedrigere Vorwärtsspannung, während die LED eine deutlich höhere Vorwärtsspannung (bei roten LEDs typischerweise ca. 2V) aufweist.\n"
+    "Dieser Unterschied entsteht durch die größere Bandlücke im Halbleitermaterial der LED, die für die Lichtemission notwendig ist.\n"
+    "Die größere Bandlücke ist die physikalische Eigenschaft, die es der LED ermöglicht, beim Elektronenübergang Licht einer bestimmten Wellenlänge (Farbe) zu emittieren.";
 
 const String solutionDesc3 = "Durchführung:\n"
     "1. Baue die Wheatstone-Brücke mit R = 1 kΩ und einem verstellbaren Potentiometer (V).\n\n"

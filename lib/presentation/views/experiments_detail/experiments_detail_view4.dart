@@ -127,7 +127,7 @@ class ExperimentsDetailView4 extends StatelessWidget {
                 headerText(strZiel),
 
                 SizedBox(height: SizeConfig.relativeHeight(0.99)),
-                descriptionText(strZielDesc3),
+                descriptionText(strZielDesc4),
 
                 dividerWithSpace(),
                 //
@@ -249,7 +249,7 @@ class ExperimentsDetailView4 extends StatelessWidget {
               sectionId: HowToUseSections.otherComponents,
               style: textStyle,
             ),
-            Text(" = 10 µF", style: textStyle),
+            Text(" = 330 µF", style: textStyle),
           ],
         ),
         SizedBox(height: 4),
@@ -267,7 +267,7 @@ class ExperimentsDetailView4 extends StatelessWidget {
         SizedBox(height: 4),
         Text("Verbindungskabel", style: textStyle),
         SizedBox(height: 4),
-        Text("3.3V SpannungQuelle", style: textStyle),
+        Text("3.3V Spannungsquelle", style: textStyle),
         SizedBox(height: 4),
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
@@ -300,7 +300,7 @@ class ExperimentsDetailView4 extends StatelessWidget {
       children: [
         Text("1. Schaltung betreiben:", style: textStyle),
         SizedBox(height: 4),
-        Text("Verbinde die Schaltung mit der 3.3V SpannungQuelle.", style: textStyle),
+        Text("Verbinde die Schaltung mit der 3.3V Spannungsquelle.", style: textStyle),
         SizedBox(height: 4),
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
@@ -320,7 +320,7 @@ class ExperimentsDetailView4 extends StatelessWidget {
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            Text("Variiere die Werte von R, C, und T um zu sehen, wie sich die Frequenz des Blinksignals ändert. Verwende die Infinity Circuit App, um die Frequenz des erzeugten Rechtecksignals zu messen und zu analysieren.", style: textStyle),
+            Text("Variiere die Werte von R, C und T um zu sehen, wie sich die Frequenz des Blinksignals ändert. Verwende die Infinity Circuit App, um die Frequenz des erzeugten Rechtecksignals zu messen und zu analysieren.", style: textStyle),
           ],
         ),
       ],

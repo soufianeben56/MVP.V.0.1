@@ -204,7 +204,7 @@ class ExperimentsDetailView1 extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("AC-Signal: + 1.2V BIS -1.2V", style: textStyle),
+        Text("AC-Signal: +0.7 V Bis -0.7 V", style: textStyle),
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
@@ -213,7 +213,7 @@ class ExperimentsDetailView1 extends StatelessWidget {
               sectionId: HowToUseSections.otherComponents,
               style: textStyle,
             ),
-            Text(": 100 Ω", style: textStyle),
+            Text("R1 : 100 Ω", style: textStyle),
           ],
         ),
         Wrap(
@@ -224,7 +224,7 @@ class ExperimentsDetailView1 extends StatelessWidget {
               sectionId: HowToUseSections.otherComponents,
               style: textStyle,
             ),
-            Text(" (L): 4.7 mH", style: textStyle),
+            Text(" (L1): 4.7 mH", style: textStyle),
           ],
         ),
         Wrap(
@@ -235,7 +235,7 @@ class ExperimentsDetailView1 extends StatelessWidget {
               sectionId: HowToUseSections.otherComponents,
               style: textStyle,
             ),
-            Text(" (C): 220 µF", style: textStyle),
+            Text(" (C1): 220 µF", style: textStyle),
           ],
         ),
         Wrap(

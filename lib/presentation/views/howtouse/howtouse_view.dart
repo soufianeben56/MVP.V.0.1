@@ -266,7 +266,7 @@ class _HowToUseViewState extends State<HowToUseView> {
                 Padding(
                   key: _sectionKeys[HowToUseSections.messboard],
                   padding: EdgeInsets.zero,
-                  child: _buildImageSection(AssetImage('assets/icons/messboard_pins.PNG')),
+                  child: _buildImageSection(AssetImage('assets/icons/messboard_pins.png')),
                 ),
                 _buildSubSectionTitle('🔄 Für AC-Messung:'),
                 _buildInstructionPoint('1. Sinusspannung einspeisen → Stecke ein Kabel in Reihe 50 (Sinus).'),

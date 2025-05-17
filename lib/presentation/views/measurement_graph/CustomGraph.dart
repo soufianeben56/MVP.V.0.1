@@ -124,13 +124,13 @@ class CustomGraphState extends State<CustomGraph> {
             else
               Row(
                 children: [
-                  _buildToggleSwitch("Voltage", AppColors.colorDarkBlue, showVoltage, (value) {
+                  _buildToggleSwitch("Spannung", AppColors.colorDarkBlue, showVoltage, (value) {
                     setState(() {
                       showVoltage = value;
                     });
                   }),
                   SizedBox(width: 12),
-                  _buildToggleSwitch("Current", AppColors.colorGreen, showCurrent, (value) {
+                  _buildToggleSwitch("Strom", AppColors.colorGreen, showCurrent, (value) {
                     setState(() {
                       showCurrent = value;
                     });

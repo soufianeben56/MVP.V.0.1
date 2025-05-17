@@ -239,6 +239,8 @@ class ExperimentsDetailView2 extends StatelessWidget {
           ],
         ),
         SizedBox(height: 4),
+        Text("R1: Vorwiderstand (zu berechnen)", style: textStyle),
+        SizedBox(height: 4),
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
@@ -323,7 +325,7 @@ class ExperimentsDetailView2 extends StatelessWidget {
           ],
         ),
         SizedBox(height: 8),
-        Text("4. Miss die Sapnnung über der Diode ", style: textStyle),
+        Text("4. Miss die Spannung über der Diode ", style: textStyle),
         SizedBox(height: 4),
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
