@@ -1,61 +1,16 @@
-# Infinity Circuit
+# infinity_circuit_temp
 
-## Projekteinrichtung
+A new Flutter project.
 
-### Voraussetzungen
-- Flutter SDK installiert
-- Xcode (für iOS-Entwicklung) - nur auf macOS verfügbar
-- Android Studio oder VS Code
+## Getting Started
 
-### Installation
+This project is a starting point for a Flutter application.
 
-1. **Clone das Repository:**
-   ```
-   git clone https://github.com/soufianeben56/MVP.V.0.1.git
-   cd MVP.V.0.1
-   ```
+A few resources to get you started if this is your first Flutter project:
 
-2. **Flutter-Abhängigkeiten installieren:**
-   ```
-   flutter pub get
-   ```
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-3. **Für iOS-Entwicklung (nur auf macOS):**
-   ```
-   cd ios
-   pod install
-   ```
-   
-   **WICHTIGER HINWEIS:** Nach dem Klonen fehlen möglicherweise einige iOS-spezifische Dateien und Verzeichnisse, die nicht im Repository gespeichert sind. Der Befehl `pod install` generiert diese Dateien automatisch.
-
-4. **Projekt öffnen:**
-   - Für iOS: Öffne `ios/Runner.xcworkspace` in Xcode (nicht `Runner.xcodeproj`!)
-   - Für Android: Öffne den Ordner `android` in Android Studio
-
-### Fehlerbehandlung
-
-- **Fehlende iOS-Dateien:** Wenn du das Projekt klonst und feststellst, dass Ordner wie `Pods`, `.symlinks`, `Runner.xcworkspace` usw. fehlen, ist das normal. Diese werden durch `pod install` generiert und sind im `.gitignore` ausgeklammert.
-
-- **CocoaPods-Installation (falls benötigt):**
-  ```
-  sudo gem install cocoapods
-  ```
-
-- **Flutter Clean (bei Problemen):**
-  ```
-  flutter clean
-  flutter pub get
-  ```
-  
-- **Beim Wechsel von Branches oder nach einem Pull:**
-  Es ist empfehlenswert, nach dem Wechseln von Branches oder nach einem Pull immer `flutter pub get` und bei iOS auch `pod install` auszuführen.
-
-## Entwicklung
-
-- Der Ordner `lib` enthält den Hauptquellcode der App.
-- Assets befinden sich im Ordner `assets`.
-- Platform-spezifischer Code ist in den Ordnern `android` und `ios`.
-
-## Kontakt
-
-Bei Fragen wende dich an das Entwicklungsteam.
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

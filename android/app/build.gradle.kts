@@ -43,9 +43,14 @@ android {
         versionName = flutter.versionName
     }
 
-    // Note: Signing is skipped for now due to issues with the keystore
-    // You can sign the app bundle manually later using:
-    // jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore new-release-key.jks -storepass Infinitysolutions4500B -keypass Infinitysolutions4500B app-release.aab infinityrelease
+    signingConfigs {
+        create("release") {
+            keyAlias = "infinityrelease"
+            keyPassword = "Infinitysolutions4500B"
+            storeFile = file("../../new-release-key.jks")
+            storePassword = "Infinitysolutions4500B"
+        }
+    }
 
     buildTypes {
         release {
@@ -55,6 +60,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }
