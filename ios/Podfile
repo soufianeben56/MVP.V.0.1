@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-platform :ios, '12.0'
+platform :ios, '14.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
@@ -43,15 +43,19 @@ post_install do |installer|
     
     # Start of the permission_handler configuration
     target.build_configurations.each do |config|
-      # You can enable the permissions needed here.
-      # For example, to enable camera permission, uncomment the following line:
-      # config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
-      #   '$(inherited)',
-      #   ## dart: PermissionGroup.camera
-      #   'PERMISSION_CAMERA=1',
-      # ]
-      
-      # Add any other permissions your app might need here
+      # Enable Bluetooth permissions
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
+        '$(inherited)',
+        # Bluetooth permissions
+        'PERMISSION_BLUETOOTH=1',
+        'PERMISSION_BLUETOOTH_SCAN=1',
+        'PERMISSION_BLUETOOTH_CONNECT=1',
+        'PERMISSION_BLUETOOTH_ADVERTISE=1',
+        # Location permissions
+        'PERMISSION_LOCATION=1',
+        'PERMISSION_LOCATION_ALWAYS=1',
+        'PERMISSION_LOCATION_WHEN_IN_USE=1',
+      ]
     end
     # End of the permission_handler configuration
   end
