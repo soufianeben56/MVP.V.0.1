@@ -1,0 +1,12 @@
+name: iOS-Archive-Check
+on: [push]
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+    - uses: actions/checkout@v4
+    - uses: subosito/flutter-action@v2
+      with:
+        channel: stable
+    - run: flutter pub get
+    - run: flutter build ipa --no-codesign 
