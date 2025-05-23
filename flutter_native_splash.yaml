@@ -1,0 +1,17 @@
+flutter_native_splash:
+  # Bild im Zentrum des Splash-Screens
+  image: assets/icons/img_splash_logo.png
+  
+  # Hintergrundfarbe des Splash-Screens
+  color: "#FFFFFF"
+  
+  # Dark mode
+  image_dark: assets/icons/img_splash_logo.png
+  color_dark: "#121212"
+  
+  # Android und iOS
+  android: true
+  ios: true
+
+  # Volle Bildschirmnutzung (keine Systemleisten)
+  fullscreen: true 
