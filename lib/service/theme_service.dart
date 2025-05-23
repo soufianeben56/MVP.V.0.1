@@ -56,7 +56,7 @@ class ThemeNotifier with ChangeNotifier {
     highlightColor: Colors.transparent,
     focusColor: Colors.transparent,
     hoverColor: Colors.transparent,
-    dialogTheme: const DialogTheme(),
+    dialogTheme: const DialogThemeData(),
     datePickerTheme: const DatePickerThemeData(
       surfaceTintColor: Colors.transparent,
     ),
